@@ -43,19 +43,19 @@ public class Card {
         this.cardSuit = suit;
     }
 
-    public static Card getRandCard() {
-        Card randCard = new Card(Values.getRandomValue(), Suits.getRandomSuit());
-        return randCard;
-    }
+    // public static Card getRandCard() {
+    //     Card randCard = new Card(Values.getRandomValue(), Suits.getRandomSuit());
+    //     return randCard;
+    // }
+
+    // public static void printRandCard() {
+    //     Card randCard = getRandCard();
+    //     System.out.printf("%s of %s\n", randCard.cardValue, randCard.cardSuit);
+    // }
 
     // public boolean isValid(Card card) {
         
     // }
-
-    public static void printRandCard() {
-        Card randCard = getRandCard();
-        System.out.printf("%s of %s\n", randCard.cardValue, randCard.cardSuit);
-    }
 
     public void printCard() {
         System.out.printf("%s of %s\n", this.cardValue.name(), this.cardSuit.name());

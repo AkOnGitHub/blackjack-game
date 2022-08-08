@@ -1,32 +1,60 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
 public class Deck {
-    Card[] deck = new Card[52];
+    public static final int DECK_SIZE = 52;
+
+    private ArrayList<Card> _deck;
 
     Deck() {
+        _deck = new ArrayList<Card>(DECK_SIZE);
+
         int deckIdx = 0;
         for(Suits suit : Suits.values()) {
             for(Values value : Values.values()) {
-                deck[deckIdx] = new Card(value, suit);
+                getDeck().add(new Card(value, suit));
                 
-                deckIdx++;
-                if (deckIdx > 51) break;
+                deckIdx += 1;
+                if (deckIdx > DECK_SIZE-1) break;
             }
         }
     }
 
-    public void shuffle(int times) {
-        for (int i = 0; i < times; i++) {
-            deck[26] = deck[0];
-            for (int j = 25, k = 27; j > 0; j--) {
-                deck[j] = deck[26 - j];
-                deck[k] = deck[j + 1];
-                k--;
-            }
-        }
+    public ArrayList<Card> getDeck() {
+        return _deck;
+    }
+
+    public void setDeck(ArrayList<Card> deck) {
+        deck = _deck;
+    }
+
+    public void shuffle() {
+        Collections.shuffle(this.getDeck());
+    }
+
+    public Card getRandCard() {
+        Random rand = new Random();
+        int randIdx = rand.nextInt(DECK_SIZE+1);
+
+        Card randCard = this.getDeck().get(randIdx);
+        getDeck().remove(randIdx);
+
+        return randCard;
+    }
+
+    public void printRandCard() {
+        Card randCard = this.getRandCard();
+        randCard.printCard();
     }
 
     public void printDeck() {
-        for(Card c : this.deck) {
+        for(Card c : this.getDeck()) {
             c.printCard();
         }
     }
+}
+
+interface sameDeck {
+    Deck deck = new Deck();
 }
