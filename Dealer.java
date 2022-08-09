@@ -1,21 +1,11 @@
 public class Dealer extends Player {
-    private Hand _dealerHand = new Hand();
+    private Hand hand;
 
-    Dealer() {
-        super();
+    Dealer(Hand hand) {
+        super(hand);
     }
 
-    public Hand getDealerHand() {
-        return _dealerHand;
-    }
-
-    public void setPlayerHand(Hand dealerHand) {
-        _dealerHand = dealerHand;
-    }
-
-
-    public void printDealerHand() {
-        System.out.println("Here's the dealer's hand: \n");
-        getDealerHand().printHand();
+    public Hand getHand() {
+        return hand;
     }
 }

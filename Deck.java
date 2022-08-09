@@ -1,54 +1,66 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
+// import java.util.Random;
 
 public class Deck {
     public static int DECK_SIZE = 52;
 
-    private ArrayList<Card> _deck = new ArrayList<Card>(DECK_SIZE);
+    private static Deck mInstance;
+    private ArrayList<Card> deck = new ArrayList<Card>(DECK_SIZE);
 
     Deck() {
         int deckIdx = 0;
         for(Suits suit : Suits.values()) {
             for(Values value : Values.values()) {
-                getDeck().add(new Card(value, suit));
+                deck.add(new Card(value, suit));
                 
                 deckIdx += 1;
                 if (deckIdx > DECK_SIZE-1) break;
             }
         }
+
+        shuffle();
     }
 
-    public ArrayList<Card> getDeck() {
-        return _deck;
+    public static Deck getInstance() {
+        if (mInstance == null) {
+            mInstance = new Deck();
+        }
+
+        return mInstance;
     }
 
-    public void setDeck(ArrayList<Card> deck) {
-        _deck = deck;
+    public synchronized Card drawFromDeck() {
+        DECK_SIZE--;
+        return (Card) deck.remove(0);
+    }
+
+    public synchronized boolean addToDeck(Card card) {
+        return deck.add(card);
     }
 
     public void shuffle() {
-        Collections.shuffle(this.getDeck());
+        Collections.shuffle(this.deck);
     }
 
-    public Card getRandCard() {
-        Random rand = new Random();
-        int randIdx = rand.nextInt(DECK_SIZE+1);
+    // public Card getRandCard() {
+    //     Random rand = new Random();
+    //     int randIdx = rand.nextInt(DECK_SIZE+1);
 
-        Card randCard = this.getDeck().get(randIdx);
-        getDeck().remove(randIdx);
-        DECK_SIZE--;
+    //     Card randCard = this.getDeck().get(randIdx-1);
+    //     getDeck().remove(randIdx);
+    //     DECK_SIZE--;
 
-        return randCard;
-    }
+    //     return randCard;
+    // }
 
-    public void printRandCard() {
-        Card randCard = this.getRandCard();
-        randCard.printCard();
-    }
+    // public void printRandCard() {
+    //     Card randCard = this.getRandCard();
+    //     randCard.printCard();
+    // }
 
     public void printDeck() {
-        for(Card c : this.getDeck()) {
+        for(Card c : this.deck) {
             c.printCard();
         }
     }

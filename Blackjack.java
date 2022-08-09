@@ -1,6 +1,3 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-
 public class Blackjack {
     public static void main(String[] args) {
         BlackjackGame myGame = new BlackjackGame();

@@ -1,21 +1,13 @@
-public class Player implements sharedDeck {
-    private Hand _playerHand = new Hand();
+public class Player {
+    private Hand hand;
 
-    public Player() {
-        
+    public Player(Hand hand) {
+        this.hand = hand;
     }
 
-    public Hand getPlayerHand() {
-        return _playerHand;
+    public Hand getHand() {
+        return hand;
     }
 
-    public void setPlayerHand(Hand playerHand) {
-        _playerHand = playerHand;
-    }
-
-
-    public void printPlayerHand() {
-        System.out.println("Here's your hand: \n");
-        getPlayerHand().printHand();
-    }
+    
 }
