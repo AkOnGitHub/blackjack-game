@@ -3,13 +3,11 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
-    public static final int DECK_SIZE = 52;
+    public static int DECK_SIZE = 52;
 
-    private ArrayList<Card> _deck;
+    private ArrayList<Card> _deck = new ArrayList<Card>(DECK_SIZE);
 
     Deck() {
-        _deck = new ArrayList<Card>(DECK_SIZE);
-
         int deckIdx = 0;
         for(Suits suit : Suits.values()) {
             for(Values value : Values.values()) {
@@ -26,7 +24,7 @@ public class Deck {
     }
 
     public void setDeck(ArrayList<Card> deck) {
-        deck = _deck;
+        _deck = deck;
     }
 
     public void shuffle() {
@@ -39,6 +37,7 @@ public class Deck {
 
         Card randCard = this.getDeck().get(randIdx);
         getDeck().remove(randIdx);
+        DECK_SIZE--;
 
         return randCard;
     }
@@ -53,8 +52,4 @@ public class Deck {
             c.printCard();
         }
     }
-}
-
-interface sameDeck {
-    Deck deck = new Deck();
 }

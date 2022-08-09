@@ -1,16 +1,16 @@
-public class Player implements sameDeck {
-    private Hand _playerHand;
+public class Player implements sharedDeck {
+    private Hand _playerHand = new Hand();
 
     public Player() {
-        _playerHand = new Hand();
+        
     }
 
     public Hand getPlayerHand() {
         return _playerHand;
     }
 
-    public void setPlayerHand(Hand hand) {
-        _playerHand = hand;
+    public void setPlayerHand(Hand playerHand) {
+        _playerHand = playerHand;
     }
 
 

@@ -36,10 +36,10 @@ enum Values {
 
 public class Card {
     Suits cardSuit;
-    Values cardValue;
+    private Values _cardValue;
 
     Card(Values value, Suits suit) {
-        this.cardValue = value;
+        this._cardValue = value;
         this.cardSuit = suit;
     }
 
@@ -57,7 +57,23 @@ public class Card {
         
     // }
 
+    public Values getValue() {
+        return _cardValue;
+    } 
+
+    public void setSuit(Values cardValue) {
+        _cardValue = cardValue;
+    }
+
     public void printCard() {
-        System.out.printf("%s of %s\n", this.cardValue.name(), this.cardSuit.name());
+        System.out.printf("%s of %s\n", this.getValue().name(), this.cardSuit.name());
+    }
+
+    public int calculateCard(Card card) {
+        int value = 0;
+
+        
+
+        return value;
     }
 }

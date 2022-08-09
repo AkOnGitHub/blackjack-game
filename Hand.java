@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
-public class Hand implements sameDeck {
-    private ArrayList<Card> _hand;
+public class Hand implements sharedDeck {
+    private Card _card1 = deck.getRandCard();
+    private Card _card2 = deck.getRandCard();
+    private ArrayList<Card> _hand = new ArrayList<>();
 
     public Hand() {
-        getHand().add(deck.getRandCard());
-        getHand().add(deck.getRandCard());
+        _hand.add(_card1);
+        _hand.add(_card2);
     }
 
     public ArrayList<Card> getHand() {
@@ -23,5 +25,13 @@ public class Hand implements sameDeck {
     public void printHand() {
         getHand().get(0).printCard();
         getHand().get(1).printCard();
+    }
+
+    public int calculateHand(Hand hand) {
+        int value = 0;
+
+        
+
+        return value;
     }
 }
