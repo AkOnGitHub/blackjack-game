@@ -6,35 +6,42 @@ public class Hand {
 
     public Hand(Deck deck) {
         this.deck = deck;
-        setHand(hand);
-    }
-
-    public ArrayList<Card> getHand() {
-        return hand;
+        setHand();
     }
 
     public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
+    }
+
+    public void setHand() {
+        resetHand();
         for (int i = 0; i < 2; i++) {
-            getHand().add(i, deck.drawFromDeck());
+            hand.add(i, deck.drawFromDeck());
+        }
+    }
+
+    public void resetHand() {
+        for (int i = 0; i < hand.size(); i++) {
+            deck.addToDeck(hand.get(i));
         }
     }
     
     public void addCardToHand() {
-        getHand().add(deck.drawFromDeck());
+        hand.add(deck.drawFromDeck());
     }
 
     public void printHand() {
-        int size = getHand().size();
+        int size = hand.size();
 
         for (int i = 0; i < size; i++)
-            getHand().get(i).printCard();
+            hand.get(i).printCard();
     }
 
     public int calculateHand() {
-        int value = 0, size = getHand().size();
+        int value = 0, size = hand.size();
 
         for (int i = 0; i < size; i++)
-            value += getHand().get(i).calculateCard();
+            value += hand.get(i).calculateCard();
 
         return value;
     }

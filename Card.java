@@ -5,11 +5,6 @@ enum Suits {
     DIAMONDS,
     CLUBS,
     SPADES;
-
-    public static Suits getRandomSuit() {
-        Random randomSuit = new Random();
-        return values()[randomSuit.nextInt(values().length)];
-    }
 }
 
 enum Values {
@@ -27,11 +22,6 @@ enum Values {
     QUEEN,
     KING,
     ACE;
-
-    public static Values getRandomValue() {
-        Random randomValue = new Random();
-        return values()[randomValue.nextInt(values().length)];
-    }
 }
 
 public class Card {
@@ -42,20 +32,6 @@ public class Card {
         this.cardValue = value;
         this.cardSuit = suit;
     }
-
-    // public static Card getRandCard() {
-    //     Card randCard = new Card(Values.getRandomValue(), Suits.getRandomSuit());
-    //     return randCard;
-    // }
-
-    // public static void printRandCard() {
-    //     Card randCard = getRandCard();
-    //     System.out.printf("%s of %s\n", randCard.cardValue, randCard.cardSuit);
-    // }
-
-    // public boolean isValid(Card card) {
-        
-    // }
 
     public Suits getCardSuit() {
         return cardSuit;

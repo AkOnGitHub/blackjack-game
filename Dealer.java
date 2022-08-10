@@ -5,7 +5,4 @@ public class Dealer extends Player {
         super(hand);
     }
 
-    public Hand getHand() {
-        return hand;
-    }
 }
