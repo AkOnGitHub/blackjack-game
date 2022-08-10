@@ -45,4 +45,8 @@ public class Hand {
 
         return value;
     }
+
+    public void showOneCard() {
+        hand.get(0).printCard();
+    }
 }
