@@ -8,6 +8,14 @@ public class Deck {
     private static Deck mInstance;
     private ArrayList<Card> deck = new ArrayList<Card>(DECK_SIZE);
 
+    public synchronized static Deck getInstance() {
+        if (mInstance == null) {
+            mInstance = new Deck();
+        }
+
+        return mInstance;
+    }
+
     Deck() {
         int deckIdx = 0;
         for(Suits suit : Suits.values()) {
@@ -20,14 +28,6 @@ public class Deck {
         }
 
         shuffle();
-    }
-
-    public static Deck getInstance() {
-        if (mInstance == null) {
-            mInstance = new Deck();
-        }
-
-        return mInstance;
     }
 
     public synchronized Card drawFromDeck() {

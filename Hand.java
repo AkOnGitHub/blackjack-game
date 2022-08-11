@@ -2,10 +2,11 @@ import java.util.ArrayList;
 
 public class Hand {
     private Deck deck;
-    private ArrayList<Card> hand = new ArrayList<Card>(2);
+    private ArrayList<Card> hand;
 
     public Hand(Deck deck) {
         this.deck = deck;
+        hand = new ArrayList<Card>(2);
         setHand();
     }
 

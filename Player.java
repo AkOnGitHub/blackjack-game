@@ -1,5 +1,5 @@
 public class Player {
-    private Hand hand;
+    private Hand hand = new Hand(Deck.getInstance());
     private int balance = 0;
     private int betMoney = 0;
     private String name = "";
@@ -7,8 +7,6 @@ public class Player {
     private boolean isBust = false;
     private boolean isHit = false;
     private boolean isBlackjack = false;
-
-    private String userInp = "";
 
     public Player(Hand hand, String name) {
         this.hand = hand;
@@ -74,8 +72,13 @@ public class Player {
     }
 
     // take betMoney from balance
-    public void placeBet() {
-        balance -= betMoney;
+    public boolean placeBet() {
+        if (balance - betMoney > 0) {
+            balance -= betMoney;
+            return true;
+        }
+        
+        return false;
     }
 
     // for when user hits
@@ -84,23 +87,12 @@ public class Player {
     }
 
     // checks if hand value > 21 -> resets or nothing
-    public void bust() {
+    public void checkBust() {
         if (hand.calculateHand() > 21) {
             isBust = true;
-            hand.resetHand();
         }
     }
 
-    // checks if user hits
-    public boolean checkHit() {
-        if (userInp == "hit" || userInp == "h" || userInp == "Hit" || userInp == "H") {
-            hit();
-            isHit = true;
-        }
-
-        return isHit;
-    }
-    
     public boolean checkBlackjack() {
         if (hand.calculateHand() == 21) {
             isBlackjack = true;

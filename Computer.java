@@ -8,6 +8,14 @@ public class Computer {
         this.dealer = dealer;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
     public boolean isPlayerWin() {
         int playerHandValue = player.getHand().calculateHand();
         int dealerHandValue = dealer.getHand().calculateHand();
@@ -17,5 +25,19 @@ public class Computer {
         }
 
         return isPlayerWin;
+    }
+
+    public void deal() {
+        dealer.dealerMoves();
+
+        System.out.println("Here's the top card of the dealer's hand:\n");
+        dealer.getHand().showOneCard();
+
+        System.out.println("Here's your hand:\n");
+        player.getHand().printHand();
+    }
+
+    public void prompt() {
+        System.out.println("Do you want to hit or stand? ");
     }
 }

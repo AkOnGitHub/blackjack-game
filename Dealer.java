@@ -1,5 +1,5 @@
 public class Dealer extends Player {
-    private Hand hand;
+    private Hand hand = new Hand(Deck.getInstance());
 
     Dealer(Hand hand) {
         super(hand, null);
