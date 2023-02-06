@@ -32,10 +32,7 @@ public class Hand {
     }
 
     public void printHand() {
-        int size = hand.size();
-
-        for (int i = 0; i < size; i++)
-            hand.get(i).printCard();
+        for (int i = 0; i < hand.size(); i++) hand.get(i).printCard();
     }
 
     public int calculateHand() {

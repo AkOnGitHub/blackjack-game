@@ -26,8 +26,6 @@ public class Deck {
                 if (deckIdx > DECK_SIZE-1) break;
             }
         }
-
-        shuffle();
     }
 
     public synchronized Card drawFromDeck() {

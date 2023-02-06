@@ -1,6 +1,9 @@
+import java.util.Scanner;
+
 public class Computer {
     private Player player;
     private Dealer dealer;
+    private Scanner sc;
     private boolean isPlayerWin = false;
 
     public Computer(Player player, Dealer dealer) {
@@ -30,14 +33,14 @@ public class Computer {
     public void deal() {
         dealer.dealerMoves();
 
-        System.out.println("Here's the top card of the dealer's hand:\n");
+        System.out.println("Here's the top card of the dealer's hand: ");
         dealer.getHand().showOneCard();
 
-        System.out.println("Here's your hand:\n");
+        System.out.println("Here's your hand: ");
         player.getHand().printHand();
     }
 
-    public void prompt() {
-        System.out.println("Do you want to hit or stand? ");
-    }
+    // public void prompt() {
+        
+    // }
 }

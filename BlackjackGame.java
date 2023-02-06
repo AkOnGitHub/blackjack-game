@@ -8,13 +8,13 @@ public class BlackjackGame {
     private Dealer mDealer; 
     private Computer mComputer;
     private boolean isPlaying = true;
-    private boolean pass = false;
+    private String userChoice;
 
     private ArrayList<String> keepPlaying = new ArrayList<String>(2);
     private ArrayList<String> allowedAnswers = new ArrayList<String>(2);
 
     public BlackjackGame() {
-        System.out.println("What's your name?");
+        System.out.printf("What's your name? ");
         sc = new Scanner(System.in);
         String name = sc.nextLine();
 
@@ -35,33 +35,35 @@ public class BlackjackGame {
     }
 
     // TODO: fix spacing in prompts
+    // TODO: make balance matter in gameplay loop
+    // TODO: every hit, check bust and blackjack, make it so when bust or blackjack == true, action is taken
     public void playGame() {
+
         // getting and placing bet
-        System.out.println("How much do you want to bet this round?");
+        System.out.printf("How much do you want to bet this round? ");
         sc = new Scanner(System.in);
         int betMoney = sc.nextInt();
         mPlayer.setBetMoney(betMoney);
         mPlayer.placeBet();
         
+        // shuffling deck
         System.out.println("Shuffling...");
-        try { Thread.sleep(2000); } catch (InterruptedException ex) { Thread.currentThread().interrupt(); }
+        Deck.getInstance().shuffle();
 
         mComputer.deal();
 
-        while (pass != true) {
-            mComputer.prompt();
+
+        // TODO: player hits more than once
+        do {
+            System.out.printf("Do you want to hit or stand? ");
             sc = new Scanner(System.in);
-            String userChoice = sc.nextLine();
+            userChoice = sc.nextLine();
+        } while (!allowedAnswers.contains(userChoice));
 
-            if (allowedAnswers.contains(userChoice)) {
-                if (userChoice == "hit") {
-                    mPlayer.hit();
-                }
-
-                pass = true;
-            } else {
-                System.out.println("That's not a valid answer. Try again.\n");
-            }
+        if (userChoice.equals("hit")) {
+            mPlayer.hit();
+            System.out.println("Now here's your hand: ");
+            mPlayer.getHand().printHand();
         }
 
         // TODO: check dealer blackjack, what to do if both blackjack, etc.
@@ -78,9 +80,5 @@ public class BlackjackGame {
             // TODO: implement game loop
             // TODO: implement payout
         }
-
-        System.out.println("Here's your hand now: \n");
-        mPlayer.getHand().addCardToHand();
-        mPlayer.getHand().printHand();
     }
 }
